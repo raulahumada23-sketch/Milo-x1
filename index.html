@@ -7,45 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background-color: #0a0a0a; 
-            color: #e0e0e0; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-        }
+        body { background-color: #0a0a0a; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
         .font-tech { font-family: 'Orbitron', sans-serif; }
-        .industrial-card { 
-            background: linear-gradient(145deg, #141414, #1f1f1f); 
-            border-radius: 12px; 
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .btn-rinnovax { 
-            transition: all 0.2s ease; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+        .industrial-card { background: linear-gradient(145deg, #141414, #1f1f1f); border-radius: 12px; border: 1px solid #2a2a2a; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .btn-rinnovax { transition: all 0.2s ease; border-radius: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.1); }
         .btn-rinnovax:active { transform: scale(0.96); }
         input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 8px; border-radius: 4px; }
-        input[type=range]::-webkit-slider-thumb { 
-            -webkit-appearance: none; 
-            height: 28px; 
-            width: 28px; 
-            border-radius: 50%; 
-            background: #d40000; 
-            cursor: pointer; 
-            border: 2px solid #fff;
-            box-shadow: 0 0 10px rgba(212, 0, 0, 0.5);
-        }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 28px; width: 28px; border-radius: 50%; background: #d40000; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 10px rgba(212, 0, 0, 0.5); }
+        #browserWarning { display: none; background: #450a0a; border: 1px solid #ff0000; color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px; }
     </style>
 </head>
 <body class="p-4 flex flex-col items-center min-h-screen">
 
-    <!-- CABECERA RINNOVAX -->
-    <header class="w-full max-w-md flex flex-col items-center mb-8 mt-4">
+    <header class="w-full max-w-md flex flex-col items-center mb-6 mt-4">
         <div class="flex items-center gap-2 mb-1">
             <svg viewBox="0 0 24 24" class="h-10 w-10 fill-red-600" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11.03L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11.03C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
@@ -53,139 +27,97 @@
             <h1 class="text-4xl font-tech font-bold tracking-tighter text-white">RINNOVAX</h1>
         </div>
         <div class="h-1 w-24 bg-red-600 rounded-full mb-1"></div>
-        <p class="text-[10px] text-gray-500 tracking-[0.4em] uppercase">Mecatrónica Minera de Precisión</p>
+        <p class="text-[10px] text-gray-500 tracking-[0.4em] uppercase text-center">Mecatrónica Minera de Precisión</p>
     </header>
 
-    <!-- Indicador de Estado -->
     <div id="statusIcon" class="mb-6 w-3 h-3 rounded-full bg-red-600 shadow-[0_0_8px_rgba(255,0,0,0.6)]"></div>
 
-    <!-- Sección de Conexión -->
     <div id="connSection" class="w-full max-w-md industrial-card p-8 mb-4 text-center">
-        <p class="text-sm mb-6 text-gray-400">Pulse para vincular con unidad operativa<br><b class="text-white">SERIE MILO-X1</b></p>
+        <p class="text-sm mb-6 text-gray-400 font-tech uppercase tracking-widest">Unidad Milo-X1</p>
         <button id="connectBtn" class="btn-rinnovax bg-red-700 hover:bg-red-600 w-full py-5 text-lg flex justify-center items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 117.778 0M12 20h.01m-7.08-7.071a8.5 8.5 0 1112.14 0" />
             </svg>
-            CONECTAR EQUIPO
+            BUSCAR EQUIPO
         </button>
-        <p id="infoMsg" class="mt-4 text-[10px] text-yellow-600 hidden uppercase font-bold tracking-widest">iOS: Use el navegador 'Bluefy'</p>
+        <p id="debugInfo" class="mt-4 text-[9px] text-gray-600 font-mono"></p>
     </div>
 
-    <!-- Interfaz de Control -->
     <main id="controls" class="w-full max-w-md opacity-20 pointer-events-none transition-all duration-700">
-        
-        <!-- Estado de Ignición -->
         <div class="industrial-card p-5 mb-4 flex justify-between items-center border-l-4 border-red-600" id="ignitionCard">
-            <div>
-                <h2 class="font-tech text-[10px] font-bold text-gray-400">SISTEMA ELECTRÓNICO</h2>
-                <p id="engState" class="text-[10px] text-red-500 font-bold tracking-widest uppercase">Motor Bloqueado</p>
-            </div>
-            <button id="ignBtn" class="w-14 h-7 bg-zinc-800 rounded-full relative transition-colors duration-300">
-                <div id="ignDot" class="w-5 h-5 bg-white rounded-full absolute top-1 left-1 transition-all duration-300"></div>
-            </button>
+            <div><h2 class="font-tech text-[10px] font-bold text-gray-400 uppercase tracking-widest">Energía</h2><p id="engState" class="text-[10px] text-red-500 font-bold tracking-widest uppercase">Bloqueado</p></div>
+            <button id="ignBtn" class="w-14 h-7 bg-zinc-800 rounded-full relative transition-colors duration-300"><div id="ignDot" class="w-5 h-5 bg-white rounded-full absolute top-1 left-1 transition-all duration-300"></div></button>
         </div>
-
-        <!-- Telemetría y Slider -->
         <div class="industrial-card p-6 mb-4">
-            <div class="flex justify-between items-end mb-4">
-                <div>
-                    <span class="text-[9px] font-bold text-gray-600 uppercase tracking-widest">Telemetría Digital</span>
-                    <h3 class="font-tech text-xs text-white">POSICIÓN DEL BRAZO</h3>
-                </div>
-                <span id="angleVal" class="text-4xl font-tech text-red-600 font-bold">0°</span>
-            </div>
+            <div class="flex justify-between items-end mb-4"><div><span class="text-[9px] font-bold text-gray-600 uppercase tracking-widest font-tech">Telemetría</span><h3 class="text-xs text-white uppercase font-bold">Posición Brazo</h3></div><span id="angleVal" class="text-4xl font-tech text-red-600 font-bold">0°</span></div>
             <input type="range" id="angleSlider" min="0" max="180" value="0">
-            <div class="flex justify-between text-[9px] mt-4 text-gray-600 font-bold uppercase tracking-tight">
-                <span>Reposo</span>
-                <span>Descarga (180°)</span>
-            </div>
         </div>
-
-        <!-- Automatización -->
         <div class="mb-4">
-            <button onclick="sendCmd('cargar')" class="btn-rinnovax bg-blue-900 hover:bg-blue-800 w-full p-5 flex items-center justify-center gap-3 border-b-4 border-blue-950">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
+            <button onclick="sendCmd('cargar')" class="btn-rinnovax bg-blue-900 hover:bg-blue-800 w-full p-5 flex items-center justify-center gap-3 border-b-4 border-blue-950 text-white font-bold">
                 <span class="text-sm">INICIAR CICLO AUTOMÁTICO</span>
             </button>
         </div>
-
-        <!-- Comunicaciones -->
         <div class="industrial-card p-4">
             <div class="flex gap-2">
-                <button onclick="sendCmd('play:1')" class="flex-1 bg-zinc-900 py-4 rounded text-[10px] font-bold border border-zinc-800 hover:bg-zinc-800 uppercase">Audio Corp.</button>
-                <button onclick="sendCmd('stop')" class="flex-1 bg-red-950 py-4 rounded text-[10px] font-bold border border-red-900 text-red-200 uppercase">Parada de Emergencia</button>
+                <button onclick="sendCmd('play:1')" class="flex-1 bg-zinc-900 py-4 rounded text-[10px] font-bold border border-zinc-800 hover:bg-zinc-800 uppercase tracking-widest">Audio</button>
+                <button onclick="sendCmd('stop')" class="flex-1 bg-red-950 py-4 rounded text-[10px] font-bold border border-red-900 text-red-200 uppercase tracking-widest">Parar</button>
             </div>
         </div>
     </main>
 
-    <footer class="mt-auto py-8 text-[9px] text-gray-700 text-center uppercase tracking-[0.4em]">
-        Serie Milo-X1 | Propiedad Intelectual de Rinnovax | Chile
-    </footer>
+    <footer class="mt-auto py-8 text-[9px] text-gray-700 text-center uppercase tracking-[0.4em]">Rinnovax | Chile</footer>
 
     <script>
         const SERVICE_UUID = "6ba10001-4490-46de-af30-da6ec190a34f";
         const CHAR_UUID = "6ba10002-4490-46de-af30-da6ec190a34f";
-
-        let device, characteristic;
-        let isEngineOn = false;
-
-        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-            document.getElementById('infoMsg').classList.remove('hidden');
-        }
+        let device, characteristic, isEngineOn = false;
 
         async function connect() {
+            const debug = document.getElementById('debugInfo');
+            debug.innerText = "Buscando...";
             try {
+                // Filtro más flexible usando prefijo
                 device = await navigator.bluetooth.requestDevice({
-                    filters: [{ name: "RINNOVAX MILO-X1" }],
+                    filters: [
+                        { namePrefix: "RINNOVAX" },
+                        { namePrefix: "ENAEX" }
+                    ],
                     optionalServices: [SERVICE_UUID]
                 });
-
+                
+                debug.innerText = "Conectando a: " + device.name;
                 const server = await device.gatt.connect();
                 const service = await server.getPrimaryService(SERVICE_UUID);
                 characteristic = await service.getCharacteristic(CHAR_UUID);
-
+                
                 document.getElementById('controls').classList.remove('opacity-20', 'pointer-events-none');
                 document.getElementById('connSection').classList.add('hidden');
                 document.getElementById('statusIcon').classList.replace('bg-red-600', 'bg-green-500');
-                document.getElementById('statusIcon').classList.replace('shadow-[0_0_8px_rgba(255,0,0,0.6)]', 'shadow-[0_0_8px_rgba(0,255,0,0.8)]');
                 
                 device.addEventListener('gattserverdisconnected', () => location.reload());
-            } catch (error) { console.log("Conexión cancelada."); }
+            } catch (error) { 
+                debug.innerText = "Error: " + error.message;
+            }
         }
 
         async function sendCmd(cmd) {
             if (!characteristic) return;
-            try {
-                const encoder = new TextEncoder();
-                await characteristic.writeValue(encoder.encode(cmd));
-            } catch(e) {}
+            try { const encoder = new TextEncoder(); await characteristic.writeValue(encoder.encode(cmd)); } catch(e) {}
         }
 
         document.getElementById('connectBtn').addEventListener('click', connect);
-
         document.getElementById('ignBtn').addEventListener('click', () => {
             isEngineOn = !isEngineOn;
-            const dot = document.getElementById('ignDot');
-            const btn = document.getElementById('ignBtn');
-            const stateTxt = document.getElementById('engState');
-            const card = document.getElementById('ignitionCard');
-
+            const dot = document.getElementById('ignDot'), btn = document.getElementById('ignBtn');
+            const stateTxt = document.getElementById('engState'), card = document.getElementById('ignitionCard');
             if (isEngineOn) {
-                dot.style.left = '32px';
-                btn.classList.replace('bg-zinc-800', 'bg-green-600');
-                stateTxt.innerText = "SISTEMA OPERATIVO";
-                stateTxt.classList.replace('text-red-500', 'text-green-500');
-                card.classList.replace('border-red-600', 'border-green-500');
-                sendCmd("start");
+                dot.style.left = '32px'; btn.classList.replace('bg-zinc-800', 'bg-green-600');
+                stateTxt.innerText = "SISTEMA ONLINE"; stateTxt.classList.replace('text-red-500', 'text-green-500');
+                card.classList.replace('border-red-600', 'border-green-500'); sendCmd("start");
             } else {
-                dot.style.left = '4px';
-                btn.classList.replace('bg-green-600', 'bg-zinc-800');
-                stateTxt.innerText = "SISTEMA BLOQUEADO";
-                stateTxt.classList.replace('text-green-500', 'text-red-500');
-                card.classList.replace('border-green-500', 'border-red-600');
-                sendCmd("lock");
+                dot.style.left = '4px'; btn.classList.replace('bg-green-600', 'bg-zinc-800');
+                stateTxt.innerText = "BLOQUEADO"; stateTxt.classList.replace('text-green-500', 'text-red-500');
+                card.classList.replace('border-green-500', 'border-red-600'); sendCmd("lock");
             }
         });
 
@@ -197,10 +129,7 @@
         });
 
         let timer;
-        function throttleSend(val) {
-            clearTimeout(timer);
-            timer = setTimeout(() => sendCmd(val), 60);
-        }
+        function throttleSend(val) { clearTimeout(timer); timer = setTimeout(() => sendCmd(val), 60); }
     </script>
 </body>
 </html>
