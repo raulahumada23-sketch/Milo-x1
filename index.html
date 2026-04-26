@@ -13,7 +13,7 @@
         .btn-rinnovax { transition: all 0.2s ease; border-radius: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255,255,255,0.1); }
         .btn-rinnovax:active { transform: scale(0.96); }
         input[type=range] { -webkit-appearance: none; width: 100%; background: #222; height: 8px; border-radius: 4px; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 28px; width: 28px; border-radius: 50%; background: #d40000; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 10px rgba(212, 0, 0, 0.5); }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 30px; width: 30px; border-radius: 50%; background: #d40000; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 10px rgba(212, 0, 0, 0.5); }
         #browserWarning { display: none; background: #450a0a; border: 1px solid #ff0000; color: white; padding: 15px; border-radius: 10px; text-align: center; margin-bottom: 20px; }
     </style>
 </head>
@@ -27,41 +27,42 @@
             <h1 class="text-4xl font-tech font-bold tracking-tighter text-white">RINNOVAX</h1>
         </div>
         <div class="h-1 w-24 bg-red-600 rounded-full mb-1"></div>
-        <p class="text-[10px] text-gray-500 tracking-[0.4em] uppercase text-center">Mecatrónica Minera de Precisión</p>
+        <p class="text-[10px] text-gray-500 tracking-[0.4em] uppercase text-center font-tech">Serie Milo-X1</p>
     </header>
 
     <div id="statusIcon" class="mb-6 w-3 h-3 rounded-full bg-red-600 shadow-[0_0_8px_rgba(255,0,0,0.6)]"></div>
 
     <div id="connSection" class="w-full max-w-md industrial-card p-8 mb-4 text-center">
-        <p class="text-sm mb-6 text-gray-400 font-tech uppercase tracking-widest">Unidad Milo-X1</p>
         <button id="connectBtn" class="btn-rinnovax bg-red-700 hover:bg-red-600 w-full py-5 text-lg flex justify-center items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 117.778 0M12 20h.01m-7.08-7.071a8.5 8.5 0 1112.14 0" />
             </svg>
-            BUSCAR EQUIPO
+            VINCULAR EQUIPO
         </button>
-        <p id="debugInfo" class="mt-4 text-[9px] text-gray-600 font-mono"></p>
+        <p id="debugInfo" class="mt-4 text-[10px] text-gray-600 font-mono"></p>
     </div>
 
     <main id="controls" class="w-full max-w-md opacity-20 pointer-events-none transition-all duration-700">
         <div class="industrial-card p-5 mb-4 flex justify-between items-center border-l-4 border-red-600" id="ignitionCard">
-            <div><h2 class="font-tech text-[10px] font-bold text-gray-400 uppercase tracking-widest">Energía</h2><p id="engState" class="text-[10px] text-red-500 font-bold tracking-widest uppercase">Bloqueado</p></div>
+            <div><h2 class="font-tech text-[10px] font-bold text-gray-400 uppercase">Sistema</h2><p id="engState" class="text-[10px] text-red-500 font-bold tracking-widest uppercase">Bloqueado</p></div>
             <button id="ignBtn" class="w-14 h-7 bg-zinc-800 rounded-full relative transition-colors duration-300"><div id="ignDot" class="w-5 h-5 bg-white rounded-full absolute top-1 left-1 transition-all duration-300"></div></button>
         </div>
+
         <div class="industrial-card p-6 mb-4">
-            <div class="flex justify-between items-end mb-4"><div><span class="text-[9px] font-bold text-gray-600 uppercase tracking-widest font-tech">Telemetría</span><h3 class="text-xs text-white uppercase font-bold">Posición Brazo</h3></div><span id="angleVal" class="text-4xl font-tech text-red-600 font-bold">0°</span></div>
+            <div class="flex justify-between items-end mb-4">
+                <div><span class="text-[9px] font-bold text-gray-600 uppercase tracking-widest">Telemetría</span><h3 class="font-tech text-xs text-white">BRAZO</h3></div>
+                <span id="angleVal" class="text-4xl font-tech text-red-600 font-bold">0°</span>
+            </div>
             <input type="range" id="angleSlider" min="0" max="180" value="0">
         </div>
-        <div class="mb-4">
-            <button onclick="sendCmd('cargar')" class="btn-rinnovax bg-blue-900 hover:bg-blue-800 w-full p-5 flex items-center justify-center gap-3 border-b-4 border-blue-950 text-white font-bold">
-                <span class="text-sm">INICIAR CICLO AUTOMÁTICO</span>
-            </button>
-        </div>
-        <div class="industrial-card p-4">
-            <div class="flex gap-2">
-                <button onclick="sendCmd('play:1')" class="flex-1 bg-zinc-900 py-4 rounded text-[10px] font-bold border border-zinc-800 hover:bg-zinc-800 uppercase tracking-widest">Audio</button>
-                <button onclick="sendCmd('stop')" class="flex-1 bg-red-950 py-4 rounded text-[10px] font-bold border border-red-900 text-red-200 uppercase tracking-widest">Parar</button>
-            </div>
+
+        <button onclick="sendCmd('cargar')" class="btn-rinnovax bg-blue-900 hover:bg-blue-800 w-full p-5 mb-4 border-b-4 border-blue-950">
+            <span class="text-sm font-bold">INICIAR CARGA (23s)</span>
+        </button>
+
+        <div class="industrial-card p-4 flex gap-2">
+            <button onclick="sendCmd('play:1')" class="flex-1 bg-zinc-900 py-4 rounded text-[10px] font-bold border border-zinc-800 uppercase">ENAEX</button>
+            <button onclick="sendCmd('stop')" class="flex-1 bg-red-950 py-4 rounded text-[10px] font-bold border border-red-900 text-red-200 uppercase">Parada</button>
         </div>
     </main>
 
@@ -74,35 +75,30 @@
 
         async function connect() {
             const debug = document.getElementById('debugInfo');
-            debug.innerText = "Buscando...";
+            debug.innerText = "Buscando unidad...";
             try {
-                // Filtro más flexible usando prefijo
                 device = await navigator.bluetooth.requestDevice({
                     filters: [
+                        { namePrefix: "Rinnovax" },
                         { namePrefix: "RINNOVAX" },
-                        { namePrefix: "ENAEX" }
+                        { name: "Rinnovax Milodon" }
                     ],
                     optionalServices: [SERVICE_UUID]
                 });
-                
-                debug.innerText = "Conectando a: " + device.name;
                 const server = await device.gatt.connect();
                 const service = await server.getPrimaryService(SERVICE_UUID);
                 characteristic = await service.getCharacteristic(CHAR_UUID);
-                
                 document.getElementById('controls').classList.remove('opacity-20', 'pointer-events-none');
                 document.getElementById('connSection').classList.add('hidden');
                 document.getElementById('statusIcon').classList.replace('bg-red-600', 'bg-green-500');
-                
                 device.addEventListener('gattserverdisconnected', () => location.reload());
-            } catch (error) { 
-                debug.innerText = "Error: " + error.message;
-            }
+                debug.innerText = "";
+            } catch (e) { debug.innerText = "Error: " + e.message; }
         }
 
         async function sendCmd(cmd) {
             if (!characteristic) return;
-            try { const encoder = new TextEncoder(); await characteristic.writeValue(encoder.encode(cmd)); } catch(e) {}
+            try { await characteristic.writeValue(new TextEncoder().encode(cmd)); } catch(e) {}
         }
 
         document.getElementById('connectBtn').addEventListener('click', connect);
@@ -112,12 +108,12 @@
             const stateTxt = document.getElementById('engState'), card = document.getElementById('ignitionCard');
             if (isEngineOn) {
                 dot.style.left = '32px'; btn.classList.replace('bg-zinc-800', 'bg-green-600');
-                stateTxt.innerText = "SISTEMA ONLINE"; stateTxt.classList.replace('text-red-500', 'text-green-500');
-                card.classList.replace('border-red-600', 'border-green-500'); sendCmd("start");
+                stateTxt.innerText = "ONLINE"; stateTxt.classList.replace('text-red-500', 'text-green-500');
+                card.classList.replace('border-red-600', 'border-green-500');
             } else {
                 dot.style.left = '4px'; btn.classList.replace('bg-green-600', 'bg-zinc-800');
                 stateTxt.innerText = "BLOQUEADO"; stateTxt.classList.replace('text-green-500', 'text-red-500');
-                card.classList.replace('border-green-500', 'border-red-600'); sendCmd("lock");
+                card.classList.replace('border-green-500', 'border-red-600');
             }
         });
 
@@ -125,11 +121,9 @@
             if (!isEngineOn) return;
             const val = e.target.value;
             document.getElementById('angleVal').innerText = val + "°";
-            throttleSend(val);
+            clearTimeout(window.timer);
+            window.timer = setTimeout(() => sendCmd(val), 60);
         });
-
-        let timer;
-        function throttleSend(val) { clearTimeout(timer); timer = setTimeout(() => sendCmd(val), 60); }
     </script>
 </body>
 </html>
